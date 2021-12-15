@@ -58,3 +58,15 @@ export async function fetchCamerasFilterMake(makeFilter) {
     //     - return returnedStuff.data
     return response.data;
 }
+
+export async function fetchCamerasSortBy(sortFilter) {
+    const response = await client
+        .from('cameras')
+        .select()
+        .order(sortFilter); //sorts/orders by name instead of default ID
+
+    
+    // - return the data you want from the returned object  
+    //     - return returnedStuff.data
+    return response.data;
+}

@@ -1,9 +1,10 @@
 // import functions and grab DOM elements
-import { fetchCameras, fetchCamerasFilterMake } from './fetch-utils.js';
+import { fetchCameras, fetchCamerasFilterMake, fetchCamerasSortBy } from './fetch-utils.js';
 import { renderCameraCard } from './render-utils.js';
 
 const cameraListEl = document.querySelector('#cameras-list-container');
 const makeDropdown = document.querySelector('#make-dropdown');
+const sortDropdown = document.querySelector('#sort-dropdown');
 
 // let state
 
@@ -68,4 +69,23 @@ makeDropdown.addEventListener('change', async() => {
             cameraListEl.append(cameraEl);
         }
     }
+});
+
+sortDropdown.addEventListener('change', async() => {
+    //Clear the DOM
+    cameraListEl.textContent = '';
+
+    const sortFilter = sortDropdown.value;
+
+    const cameras = await fetchCamerasSortBy(sortFilter);
+    
+    for (let eachCamera of cameras) {
+        // - call render function that returns DOM node of each thing
+        const cameraEl = renderCameraCard(eachCamera);
+
+       //  - append to list container
+        cameraListEl.append(cameraEl);
+    }
+
+
 });
