@@ -4,17 +4,24 @@
 
 
 //   - remember: have supabase URL + Key with: const client = supabase.createClient(URL, Key)
-const SUPABASE_URL = '';
-const SUPABASE_KEY = '';
+
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzOTUyNDEzNiwiZXhwIjoxOTU1MTAwMTM2fQ.RoJQToswNQTg_HpYFxDJfQsgthtgQ_E6eOq2Hq3CkMo';
+
+const SUPABASE_URL = 'https://kxgrnsxvarsccdnmwtci.supabase.co';
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
+
+
 //   - remember: export async function fetchThings()
+
 export async function fetchCameras() {
     //   - const returnedStuff = await client
     //     - .from('name of table')
     //     - .select();
-    const returnedArray = await client.from('cameras').select();
+    const returnedArray = await client
+        .from('cameras')
+        .select();
     
     // - return the data you want from the returned object  
     //     - return returnedStuff.data
@@ -22,8 +29,8 @@ export async function fetchCameras() {
 }
 
 // ### fetchThingObject(id)
-
 //     - use async/await function
+
 export async function fetchCamera(id) {
     //     - const returnedStuff = await client
     //         hint: .from('name of table) .select() .match({id:id}) .single();
@@ -32,6 +39,7 @@ export async function fetchCamera(id) {
         .select()
         .match({ id: id })
         .single();
+    // console.log(returnedObj.data);
 
     //     - return returnedStuff.data
     return returnedObj.data;

@@ -9,11 +9,11 @@ export function renderCameraCard(cameraObj) {
     const cameraImgEl = document.createElement('img');
     
     // - sets textContent and other properties equal to data in object
-    cameraNameEl.textContent = cameraObj.name;
+    cameraNameEl.textContent = cameraObj.make + ' ' + cameraObj.model;
     cameraImgEl.src = cameraObj.img_url;
     
     //     - remember: set href of anchor tag to './detail/?=${id}' using query string
-    anchorEl.href = `./detail/?=${cameraObj.id}`;
+    anchorEl.href = `./detail/?id=${cameraObj.id}`;
     
     //     - add classlists
     cardDiv.classList.add('card');
@@ -42,14 +42,20 @@ export function renderCameraDetails(cameraObj) {
     const imgEl = document.createElement('img');
 
     //     - sets textContent and other properties
-    nameEl.textContent = cameraObj.name;
+    nameEl.textContent = cameraObj.make + ' ' + cameraObj.model;
     typeEl.textContent = `Type: ${cameraObj.type}`;
     yearEl.textContent = `Year released: ${cameraObj.year}`;
     imgEl.src = cameraObj.img_url;
     blurbEl.textContent = cameraObj.blurb;
     
     //     - add classLists
-
+    bigContainerDiv.classList.add('detail-container');
+    nameEl.classList.add('detail-name');
+    typeEl.classList.add('detail-text');
+    yearEl.classList.add('detail-text');
+    blurbEl.classList.add('detail-text');
+    imgEl.classList.add('detail-img');
+    
     //     - append in Div
     typeAndYearDiv.append(typeEl, yearEl);
 
