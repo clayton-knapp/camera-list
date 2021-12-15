@@ -46,3 +46,15 @@ export async function fetchCamera(id) {
     //     - return returnedStuff.data
     return returnedObj.data;
 }
+
+export async function fetchCamerasFilterMake(makeFilter) {
+    const response = await client
+        .from('cameras')
+        .select()
+        .order('make') //sorts/orders by name instead of default ID
+        .eq('make', makeFilter);
+    
+    // - return the data you want from the returned object  
+    //     - return returnedStuff.data
+    return response.data;
+}
