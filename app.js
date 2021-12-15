@@ -1,22 +1,14 @@
 // import functions and grab DOM elements
-import { fetchCameras, fetchCamerasFilterMake, fetchCamerasSortBy } from './fetch-utils.js';
+import { fetchCameras, fetchCamerasFilterMake, fetchCamerasSortBy, deleteDummy, createDummy } from './fetch-utils.js';
 import { renderCameraCard } from './render-utils.js';
 
 const cameraListEl = document.querySelector('#cameras-list-container');
 const makeDropdown = document.querySelector('#make-dropdown');
 const sortDropdown = document.querySelector('#sort-dropdown');
+const deleteDummyButton = document.querySelector('#delete-dummy');
+const createDummyButton = document.querySelector('#create-dummy');
 
 // let state
-
-//example object:
-// const camera1 = {
-//     id: 1,
-//     name: 'Nikon F3',
-//     type: '35mm SLR',
-//     year: 1980,
-//     blurb: ''
-//      img_url: ''
-// };
 
 // set event listeners 
   // get user input
@@ -79,6 +71,46 @@ sortDropdown.addEventListener('change', async() => {
 
     const cameras = await fetchCamerasSortBy(sortFilter);
     
+    for (let eachCamera of cameras) {
+        // - call render function that returns DOM node of each thing
+        const cameraEl = renderCameraCard(eachCamera);
+
+       //  - append to list container
+        cameraListEl.append(cameraEl);
+    }
+});
+
+deleteDummyButton.addEventListener('click', async() =>{ 
+    //Clear the DOM
+    cameraListEl.textContent = '';
+
+    const deleteID = 'Dummy';
+
+    await deleteDummy(deleteID);
+
+    const cameras = await fetchCameras();
+
+    for (let eachCamera of cameras) {
+        // - call render function that returns DOM node of each thing
+        const cameraEl = renderCameraCard(eachCamera);
+
+       //  - append to list container
+        cameraListEl.append(cameraEl);
+    }
+
+
+});
+
+createDummyButton.addEventListener('click', async() =>{ 
+    //Clear the DOM
+    cameraListEl.textContent = '';
+
+    //calls create function
+    await createDummy();
+
+    //re displays the cards
+    const cameras = await fetchCameras();
+
     for (let eachCamera of cameras) {
         // - call render function that returns DOM node of each thing
         const cameraEl = renderCameraCard(eachCamera);

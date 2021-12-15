@@ -70,3 +70,28 @@ export async function fetchCamerasSortBy(sortFilter) {
     //     - return returnedStuff.data
     return response.data;
 }
+
+export async function deleteDummy(deleteID) {
+    await client
+        .from('cameras')
+        .delete()
+        .match({ make: deleteID });
+    
+    // - return the data you want from the returned object  
+    //     - return returnedStuff.data
+    // console.log(response.data);
+}
+
+export async function createDummy() {
+    await client
+        .from('cameras')
+        .insert([
+            { make: 'Dummy', model: 'dummy', year: 9999, type: 'dummy', blurb: 'dum dum', img_url: 'https://placekitten.com/200/300' }
+        ]);
+    
+}
+
+// const { data, error } = await supabase
+//   .from('cameras')
+//   .delete()
+//   .eq('some_column', 'someValue')
