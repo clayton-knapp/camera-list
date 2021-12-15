@@ -23,3 +23,71 @@ Additional considerations:
   - What needs to live in a persistence layer?
 - Is there some state we need to initialize?
 - Ask: should any of this work be abstracted into functions? (i.e., is the work complicated? can it be resused?)
+
+
+
+
+## HTML SETUP
+
+### Home page/list page
+- Div to hold list of things
+    - each thing should be a link to its detail page (anchor tag) (in render function wrap it in `<a>` tag and set href to have id query string in the URL)
+
+## EVENTS - Home
+- on load
+    - gets things from the database
+        - use async and await - to call a function that calls the server and returns the array of things
+    - displays those things (loop, render, append)
+        - for loop
+        - call render function that returns DOM node of each thing
+        - append to list container
+
+### Detail page
+- Div to hold specific thing details
+
+## EVENTS - details page
+- on load
+    - figures out which thing object to fetch based on URL query string
+    - use URLSearchParams to grab the ID of the desired object from the URL. hint: new URLSearchParams(window.location.search), then use .get('id'), then you have the id
+    - fetch the specific thing object from the database\
+    - display this single thing info
+        - call render function to return DOM node of all things details
+        - append DOM node to details container
+
+## FUNCTIONS
+
+### fetchThingArray()
+  - in seperate fetch-utils js
+  - remember: have supabase URL + Key with: const client = supabase.createClient(URL, Key)
+  - remember: add supabase CDN script tag to head of HTML file
+  - remember: export async function fetchThings()
+  - remember: await keyword
+  - const returnedStuff = await client
+    - .from('name of table')
+    - .select();
+- return the data you want from the returned object  
+    - return returnedStuff.data
+
+### fetchThingObject(id)
+    - use URLSearchParams to grab the ID of the desired object from the URL. hint: new URLSearchParams(window.location.search), then use .get('id')
+    - then you have the id
+    - use async/await function
+    - const returnedStuff = await client
+        hint: .from('name of table) .select() .match({id:id}) .single();
+    - return returnedStuff.data
+
+
+### renderListOfThings
+    - creates DOM elements
+    - sets textContent and other properties equal to data in object
+    - remember: set href of anchor tag to './detail/?=${id}' using query string
+    - add classlists
+    - appends in Div
+    - returns DOM node
+
+### renderDetailOfThing
+    - create DOM elements
+    - sets textContent and other properties
+    - add classLists
+    - append in Div
+    - return DOM node

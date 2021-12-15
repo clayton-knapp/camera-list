@@ -89,3 +89,44 @@ footer {
     background-color: var(--color3);
     box-shadow: var(--shadow);
 }
+
+.card {
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    height: 400px;
+}
+
+.card p {
+    font-size: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.card img {
+    /* width: 80%; */
+    height: 65%;
+}
+
+.detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detail-name {
+    font-size: 3rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.detail-text {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.25em;
+}
+
+.detail-img {
+    width: 500px;
+}
