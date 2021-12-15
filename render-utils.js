@@ -35,7 +35,7 @@ export function renderCameraDetails(cameraObj) {
     //     - create DOM elements
     const bigContainerDiv = document.createElement('div');
     const typeAndYearDiv = document.createElement('div');
-    const nameEl = document.createElement('p');
+    const nameEl = document.createElement('h2');
     const typeEl = document.createElement('p');
     const yearEl = document.createElement('p');
     const blurbEl = document.createElement('p');

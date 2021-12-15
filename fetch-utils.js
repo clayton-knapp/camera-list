@@ -21,7 +21,9 @@ export async function fetchCameras() {
     //     - .select();
     const returnedArray = await client
         .from('cameras')
-        .select();
+        .select()
+        .order('make'); //sorts/orders by name instead of default ID
+        // .eq('make', 'Nikon');
     
     // - return the data you want from the returned object  
     //     - return returnedStuff.data
